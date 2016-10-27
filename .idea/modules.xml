@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/ApgCommonUtility.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/ApgCommonUtility.iml" />
+      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/app/app.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/utility/utility.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/utility/utility.iml" />
+    </modules>
+  </component>
+</project>
