@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/ApgCommonUtility.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/ApgCommonUtility.iml" />
-      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/app/app.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/app/app.iml" />
-      <module fileurl="file://$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/utility/utility.iml" filepath="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/utility/utility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common-Utility.iml" filepath="$PROJECT_DIR$/Common-Utility.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utility/utility.iml" filepath="$PROJECT_DIR$/utility/utility.iml" />
     </modules>
   </component>
 </project>

@@ -1,14 +1,15 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.apg-mobile'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
@@ -25,44 +26,10 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.0.0'
+
+    testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
-}
-
-def libraryGroupId = 'com.apg.android.library'
-def libraryArtifactId = 'utility'
-def libraryVersion = '1.0.0'
-
-publishing {
-    publications {
-        aar(MavenPublication) {
-            groupId libraryGroupId
-            version libraryVersion
-            artifactId libraryArtifactId
-
-            artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
-        }
-    }
-}
-
-artifactory {
-    contextUrl = 'http://artf.viinsoft.com/artifactory'
-    publish {
-        repository {
-            repoKey = 'libs-release-local'
-
-            username = artifactory_username
-            password = artifactory_password
-        }
-        defaults {
-            publications('aar')
-            publishArtifacts = true
-
-            properties = ['qa.level': 'basic', 'q.os': 'android', 'dev.team': 'core']
-            publishPom = true
-        }
-    }
 }

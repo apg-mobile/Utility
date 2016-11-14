@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility" />
-            <option value="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/app" />
-            <option value="$USER_HOME$/AndroidStudioProjects/Works/ApgCommonUtility/utility" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/utility" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
