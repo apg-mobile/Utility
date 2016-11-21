@@ -22,6 +22,28 @@ public class CalendarUtils {
         return todayCalendar.get(Calendar.DATE) == compareCalendar.get(Calendar.DATE);
     }
 
+    public static boolean isYesterday(long date) {
+
+        Calendar compareCalendar = Calendar.getInstance();
+        compareCalendar.setTime(new Date(date));
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(new Date(System.currentTimeMillis()));
+
+        return todayCalendar.get(Calendar.DATE) < compareCalendar.get(Calendar.DATE);
+    }
+
+    public static boolean isFuture(long date) {
+
+        Calendar compareCalendar = Calendar.getInstance();
+        compareCalendar.setTime(new Date(date));
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(new Date(System.currentTimeMillis()));
+
+        return todayCalendar.get(Calendar.DATE) > compareCalendar.get(Calendar.DATE);
+    }
+
     public static String getString(Calendar calendar, CalendarFormat format) {
         SimpleDateFormat s = new SimpleDateFormat(format.getPattern());
         String result;
