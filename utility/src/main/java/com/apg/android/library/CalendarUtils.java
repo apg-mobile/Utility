@@ -11,6 +11,37 @@ import java.util.Date;
  */
 public class CalendarUtils {
 
+    public static TimeState getTimeState(long date) {
+
+        Calendar compareCalendar = Calendar.getInstance();
+        compareCalendar.setTime(new Date(date));
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(new Date(System.currentTimeMillis()));
+
+        int today = todayCalendar.get(Calendar.DATE);
+        int compareDay = compareCalendar.get(Calendar.DATE);
+        if (today == compareDay) {
+            return TimeState.TODAY;
+        } else if (today > compareDay && (today - compareDay) == 1) {
+            return TimeState.YESTERDAY;
+        } else if (today > compareDay) {
+            return TimeState.PAST;
+        } else if (today < compareDay && (compareDay - today) == 1) {
+            return TimeState.TOMORROW;
+        } else {
+            return TimeState.FUTURE;
+        }
+    }
+
+    public enum TimeState {
+        PAST,
+        YESTERDAY,
+        TODAY,
+        TOMORROW,
+        FUTURE
+    }
+
     public static boolean isToday(long date) {
 
         Calendar compareCalendar = Calendar.getInstance();
