@@ -11,6 +11,19 @@ import java.util.Date;
  */
 public class CalendarUtils {
 
+    public static boolean isNotCurrentYear(long date) {
+        Calendar compareCalendar = Calendar.getInstance();
+        compareCalendar.setTime(new Date(date));
+
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(new Date(System.currentTimeMillis()));
+
+        int thisYear = todayCalendar.get(Calendar.YEAR);
+        int compareYear = compareCalendar.get(Calendar.YEAR);
+
+        return thisYear != compareYear;
+    }
+
     public static TimeState getTimeState(long date) {
 
         Calendar compareCalendar = Calendar.getInstance();
