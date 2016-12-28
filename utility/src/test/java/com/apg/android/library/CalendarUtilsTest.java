@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
 
@@ -13,12 +14,14 @@ import static org.junit.Assert.*;
 public class CalendarUtilsTest {
 
     @Test
-    public void checkTodayTimeState() throws Exception {
+    public void checkPassTimeState() throws Exception {
 
-        long time = new Date().getTime();
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -2);
+        long time = cal.getTime().getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
-        assertEquals(timeState, CalendarUtils.TimeState.TODAY);
+        assertEquals(CalendarUtils.TimeState.PAST, timeState);
     }
 
     @Test
@@ -29,19 +32,18 @@ public class CalendarUtilsTest {
         long time = cal.getTime().getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
-        assertEquals(timeState, CalendarUtils.TimeState.YESTERDAY);
+        assertEquals(CalendarUtils.TimeState.YESTERDAY, timeState);
     }
 
     @Test
-    public void checkPassTimeState() throws Exception {
+    public void checkTodayTimeState() throws Exception {
 
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -2);
-        long time = cal.getTime().getTime();
+        long time = new Date().getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
-        assertEquals(timeState, CalendarUtils.TimeState.PAST);
+        assertEquals(CalendarUtils.TimeState.TODAY, timeState);
     }
+
 
     @Test
     public void checkTomorrowTimeState() throws Exception {
@@ -51,7 +53,7 @@ public class CalendarUtilsTest {
         long time = cal.getTime().getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
-        assertEquals(timeState, CalendarUtils.TimeState.TOMORROW);
+        assertEquals(CalendarUtils.TimeState.TOMORROW, timeState);
     }
 
     @Test
@@ -62,7 +64,6 @@ public class CalendarUtilsTest {
         long time = cal.getTime().getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
-        assertEquals(timeState, CalendarUtils.TimeState.FUTURE);
+        assertEquals(CalendarUtils.TimeState.FUTURE, timeState);
     }
-
 }

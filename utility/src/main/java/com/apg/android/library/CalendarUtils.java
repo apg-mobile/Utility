@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by siwarat.s on 23/5/2559.
@@ -26,25 +27,42 @@ public class CalendarUtils {
 
     public static TimeState getTimeState(long date) {
 
-        Calendar compareCalendar = Calendar.getInstance();
-        compareCalendar.setTime(new Date(date));
+        long daysDiff = CountDayFromNow(date);
 
-        Calendar todayCalendar = Calendar.getInstance();
-        todayCalendar.setTime(new Date(System.currentTimeMillis()));
-
-        int today = todayCalendar.get(Calendar.DATE);
-        int compareDay = compareCalendar.get(Calendar.DATE);
-        if (today == compareDay) {
+        if (daysDiff == 0) {
             return TimeState.TODAY;
-        } else if (today > compareDay && (today - compareDay) == 1) {
+        } else if (daysDiff == -1){
             return TimeState.YESTERDAY;
-        } else if (today > compareDay) {
-            return TimeState.PAST;
-        } else if (today < compareDay && (compareDay - today) == 1) {
+        }  else if (daysDiff == 1) {
             return TimeState.TOMORROW;
+        } else if (daysDiff < -1) {
+            return TimeState.PAST;
         } else {
             return TimeState.FUTURE;
         }
+    }
+
+    public static int CountDayFromNow(long milliSec) {
+        Calendar compareCal = Calendar.getInstance();
+        compareCal.setTimeInMillis(milliSec);
+        int compare = compareCal.get(Calendar.DATE);
+
+        Calendar todayCal = Calendar.getInstance();
+        int today = todayCal.get(Calendar.DATE);
+
+        return compare - today;
+    }
+
+    public static int CountDayBetween(long milliSecFrom, long milliSecTo) {
+        Calendar fromCal = Calendar.getInstance();
+        fromCal.setTimeInMillis(milliSecFrom);
+        int from = fromCal.get(Calendar.DATE);
+
+        Calendar toCal = Calendar.getInstance();
+        toCal.setTimeInMillis(milliSecTo);
+        int to = toCal.get(Calendar.DATE);
+
+        return from - to;
     }
 
     public enum TimeState {
