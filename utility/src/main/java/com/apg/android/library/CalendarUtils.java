@@ -42,27 +42,44 @@ public class CalendarUtils {
         }
     }
 
-    public static int CountDayFromNow(long milliSec) {
-        Calendar compareCal = Calendar.getInstance();
-        compareCal.setTimeInMillis(milliSec);
-        int compare = compareCal.get(Calendar.DATE);
-
+    public static long CountDayFromNow(long milliSec) {
         Calendar todayCal = Calendar.getInstance();
-        int today = todayCal.get(Calendar.DATE);
+        todayCal.getTimeInMillis();
+        todayCal.set(Calendar.HOUR_OF_DAY, 0);
+        todayCal.set(Calendar.MINUTE, 0);
+        todayCal.set(Calendar.SECOND, 0);
+        todayCal.set(Calendar.MILLISECOND, 0);
 
-        return compare - today;
+        Calendar diffCal = Calendar.getInstance();
+        diffCal.setTimeInMillis(milliSec);
+        diffCal.set(Calendar.HOUR_OF_DAY, 0);
+        diffCal.set(Calendar.MINUTE, 0);
+        diffCal.set(Calendar.SECOND, 0);
+        diffCal.set(Calendar.MILLISECOND, 0);
+
+        long diff =  diffCal.getTimeInMillis() - todayCal.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(diff);
     }
 
-    public static int CountDayBetween(long milliSecFrom, long milliSecTo) {
+    public static long CountDayBetween(long milliSecFrom, long milliSecTo) {
+
         Calendar fromCal = Calendar.getInstance();
         fromCal.setTimeInMillis(milliSecFrom);
-        int from = fromCal.get(Calendar.DATE);
+        fromCal.getTimeInMillis();
+        fromCal.set(Calendar.HOUR_OF_DAY, 0);
+        fromCal.set(Calendar.MINUTE, 0);
+        fromCal.set(Calendar.SECOND, 0);
+        fromCal.set(Calendar.MILLISECOND, 0);
 
         Calendar toCal = Calendar.getInstance();
         toCal.setTimeInMillis(milliSecTo);
-        int to = toCal.get(Calendar.DATE);
+        toCal.set(Calendar.HOUR_OF_DAY, 0);
+        toCal.set(Calendar.MINUTE, 0);
+        toCal.set(Calendar.SECOND, 0);
+        toCal.set(Calendar.MILLISECOND, 0);
 
-        return from - to;
+        long diff = toCal.getTimeInMillis() - fromCal.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toDays(diff);
     }
 
     public enum TimeState {

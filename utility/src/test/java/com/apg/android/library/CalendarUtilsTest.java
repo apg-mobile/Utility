@@ -2,8 +2,10 @@ package com.apg.android.library;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.*;
@@ -18,7 +20,11 @@ public class CalendarUtilsTest {
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -2);
-        long time = cal.getTime().getTime();
+        long time = cal.getTimeInMillis();
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+//        Date parse = sdf.parse("2016-06-06T10:26:51.500");
+//        long time = parse.getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
         assertEquals(CalendarUtils.TimeState.PAST, timeState);
@@ -61,7 +67,11 @@ public class CalendarUtilsTest {
 
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, 2);
-        long time = cal.getTime().getTime();
+        long time = cal.getTimeInMillis();
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+//        Date parse = sdf.parse("2017-01-07T00:00:00.000");
+//        long time = parse.getTime();
 
         CalendarUtils.TimeState timeState = CalendarUtils.getTimeState(time);
         assertEquals(CalendarUtils.TimeState.FUTURE, timeState);
